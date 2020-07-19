@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Dictionary</string>
+
+    <string name="nothing_found">Nothing found</string>
+    <string name="error_occurred">An error has occurred</string>
+</resources>

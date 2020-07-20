@@ -11,7 +11,7 @@ class WordSearchViewModel(private val mainRepository: WordRepository) : ViewMode
     private val mutableLiveData = MutableLiveData<ResultWrapper<List<Word>>>()
     fun getLiveData(): LiveData<ResultWrapper<List<Word>>> = mutableLiveData
 
-    fun fetchData(query: String) {
+    fun loadWordsList(query: String) {
         mutableLiveData.value = ResultWrapper.Loading(data = null)
         viewModelScope.launch {
             when (val response = mainRepository.searchWords(query)) {

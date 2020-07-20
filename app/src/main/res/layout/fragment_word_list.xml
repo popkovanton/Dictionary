@@ -8,6 +8,7 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/sv_word_search"
         app:layout_constraintTop_toTopOf="parent"
+        android:hint="@string/sv_word_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </androidx.appcompat.widget.SearchView>
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         tools:visibility="visible"
-        android:text="Nothing" />
+        android:text="@string/tv_info_middle_text" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

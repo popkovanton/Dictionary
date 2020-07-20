@@ -19,8 +19,3 @@ data class Definition(
     val text: String?,
     val soundUrl: String?
 ) : Serializable
-
-data class Translation(
-    val note: String?,
-    val text: String?
-) : Serializable

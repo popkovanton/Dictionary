@@ -12,7 +12,7 @@ class WordDetailsViewModel(private val mainRepository: WordRepository) : ViewMod
     private val mutableLiveData = MutableLiveData<ResultWrapper<List<MeaningDetails>>>()
     fun getLiveData(): LiveData<ResultWrapper<List<MeaningDetails>>> = mutableLiveData
 
-    fun fetchData(query: String) {
+    fun loadDetails(query: String) {
         mutableLiveData.value = ResultWrapper.Loading(data = null)
         viewModelScope.launch {
             when (val response = mainRepository.searchMeaning(query)) {

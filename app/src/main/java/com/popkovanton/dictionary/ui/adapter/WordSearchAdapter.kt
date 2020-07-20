@@ -10,7 +10,8 @@ import com.popkovanton.dictionary.R
 import com.popkovanton.dictionary.utils.DiffUtilCallback
 import kotlinx.android.synthetic.main.item_word_list.view.*
 
-class WordSearchAdapter(private val listener: (Word) -> Unit) : ListAdapter<Word, WordSearchAdapter.ItemHolder>(DiffUtilCallback()) {
+class WordSearchAdapter(private val listener: (Word) -> Unit) :
+    ListAdapter<Word, WordSearchAdapter.ItemHolder>(DiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordSearchAdapter.ItemHolder {
         val inflater = LayoutInflater.from(parent.context)

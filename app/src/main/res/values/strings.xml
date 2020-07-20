@@ -3,4 +3,6 @@
 
     <string name="nothing_found">Nothing found</string>
     <string name="error_occurred">An error has occurred</string>
+    <string name="sv_word_search">Search</string>
+    <string name="tv_info_middle_text">Nothing</string>
 </resources>

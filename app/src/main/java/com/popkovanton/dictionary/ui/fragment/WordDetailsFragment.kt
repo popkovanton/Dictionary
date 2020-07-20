@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.popkovanton.dictionary.R
+import com.popkovanton.dictionary.data.model.DetailsFinal
 import com.popkovanton.dictionary.data.network.ApiFactory
+import com.popkovanton.dictionary.extentions.toDetailsFinal
 import com.popkovanton.dictionary.ui.viewmodel.ViewModelFactory
 import com.popkovanton.dictionary.ui.viewmodel.WordDetailsViewModel
 import com.popkovanton.dictionary.utils.ResultWrapper
@@ -36,21 +38,26 @@ class WordDetailsFragment : Fragment(R.layout.fragment_word_details) {
         wordDetailsViewModel.getLiveData().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is ResultWrapper.Success -> {
-                    tv_word_name.text = result.data[0].text
-                    tv_word_translation.text = result.data[0].translation.text
-                    tv_transcription.text = result.data[0].transcription
-                    tv_definition.text = result.data[0].definition.text
+                    result.data.getOrNull(0)?.toDetailsFinal(args.word)?.let { updateUI(it) }
                 }
             }
         })
-        wordDetailsViewModel.fetchData(args.word.meanings[0].id.toString())
-        setImage(args.word.meanings[0].imageUrl)
+        wordDetailsViewModel.loadDetails(args.word.meanings.getOrNull(0)?.id.toString())
     }
 
-    private fun setImage(imageUrl: String?){
-        Log.d("setImage", "imageUrl: $imageUrl")
+    private fun updateUI(detailsFinal: DetailsFinal) {
+        detailsFinal.apply {
+            tv_word_name.text = text
+            tv_word_translation.text = translation
+            tv_transcription.text = transcription
+            tv_definition.text = definition
+            setImage(imageUrl)
+        }
+    }
+
+    private fun setImage(imageUrl: String?) {
         Glide.with(iv_header_background)
-            .load("https:$imageUrl")
+            .load(imageUrl)
             .into(iv_header_background)
     }
 }

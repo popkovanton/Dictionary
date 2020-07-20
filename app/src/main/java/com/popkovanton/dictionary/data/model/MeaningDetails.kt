@@ -7,12 +7,7 @@ data class MeaningDetails(
     val text: String,
     val transcription: String,
     val translation: Translation,
-    val definition: Definition,
-    val images: ArrayList<Images>
-) : Serializable
-
-data class Images(
-    val url: String?
+    val definition: Definition
 ) : Serializable
 
 data class Definition(

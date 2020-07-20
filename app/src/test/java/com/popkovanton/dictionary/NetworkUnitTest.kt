@@ -24,4 +24,13 @@ class NetworkUnitTest {
             assert(result is ResultWrapper.Success)
         }
     }
+
+    @Test
+    fun testMeaningRepository() {
+        val repository = WordRepository(ApiFactory.getClient())
+        runBlocking {
+            val result = repository.searchWords("110342")
+            assert(result is ResultWrapper.Success)
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.popkovanton.dictionary.utils
 
-import Word
+import com.popkovanton.dictionary.data.model.Word
 import androidx.recyclerview.widget.DiffUtil
 
 class DiffUtilCallback : DiffUtil.ItemCallback<Word>() {

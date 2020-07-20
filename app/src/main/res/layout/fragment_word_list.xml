@@ -6,28 +6,28 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/svWords"
+        android:id="@+id/sv_word_search"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </androidx.appcompat.widget.SearchView>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swRefreshWords"
-        app:layout_constraintTop_toBottomOf="@id/svWords"
+        android:id="@+id/sw_refresh_word_list"
+        app:layout_constraintTop_toBottomOf="@id/sv_word_search"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWordsList"
+            android:id="@+id/rv_words_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_word_list" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
-        android:id="@+id/tvNotFound"
+        android:id="@+id/tv_info_middle_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

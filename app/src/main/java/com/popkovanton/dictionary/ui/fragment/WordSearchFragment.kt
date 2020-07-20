@@ -1,28 +1,30 @@
 package com.popkovanton.dictionary.ui.fragment
 
-import Word
+import com.popkovanton.dictionary.data.model.Word
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.popkovanton.dictionary.R
 import com.popkovanton.dictionary.data.network.ApiFactory
-import com.popkovanton.dictionary.ui.adapter.WordListAdapter
-import com.popkovanton.dictionary.ui.viewmodel.WordListViewModel
+import com.popkovanton.dictionary.ui.adapter.WordSearchAdapter
+import com.popkovanton.dictionary.ui.viewmodel.WordSearchViewModel
 import com.popkovanton.dictionary.ui.viewmodel.ViewModelFactory
 import com.popkovanton.dictionary.utils.ResultWrapper
 import kotlinx.android.synthetic.main.fragment_word_list.*
 
-class WordListFragment : Fragment(R.layout.fragment_word_list), SearchView.OnQueryTextListener {
-    private lateinit var viewModel: WordListViewModel
-    private val wordAdapter = WordListAdapter()
+class WordSearchFragment : Fragment(R.layout.fragment_word_list), SearchView.OnQueryTextListener {
+    private lateinit var viewModel: WordSearchViewModel
+    private lateinit var wordAdapter : WordSearchAdapter
     private var currentQuery: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initViewModel()
         initUI()
         initObservers()
@@ -33,48 +35,55 @@ class WordListFragment : Fragment(R.layout.fragment_word_list), SearchView.OnQue
         viewModel = ViewModelProviders.of(
             this,
             ViewModelFactory(ApiFactory.getClient())
-        ).get(WordListViewModel::class.java)
+        ).get(WordSearchViewModel::class.java)
     }
 
     private fun initUI() {
-        rvWordsList.layoutManager = LinearLayoutManager(context)
-        rvWordsList.adapter = wordAdapter
-        rvWordsList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-        svWords.setOnQueryTextListener(this)
+        wordAdapter = WordSearchAdapter {
+            openDetailFragment(it)
+        }
+        rv_words_list.layoutManager = LinearLayoutManager(context)
+        rv_words_list.adapter = wordAdapter
+        rv_words_list.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        sv_word_search.setOnQueryTextListener(this)
     }
 
     private fun initObservers() {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is ResultWrapper.Success -> {
-                    rvWordsList.visibility = View.VISIBLE
+                    rv_words_list.visibility = View.VISIBLE
                     progress_bar.visibility = View.GONE
-                    tvNotFound.visibility = View.GONE
+                    tv_info_middle_text.visibility = View.GONE
                     retrieveList(result.data)
                 }
                 is ResultWrapper.Loading -> {
                     progress_bar.visibility = View.VISIBLE
-                    tvNotFound.visibility = View.GONE
+                    tv_info_middle_text.visibility = View.GONE
                 }
                 is ResultWrapper.Error -> {
-                    rvWordsList.visibility = View.GONE
+                    rv_words_list.visibility = View.GONE
                     progress_bar.visibility = View.GONE
-                    tvNotFound.setText(R.string.error_occurred)
-                    tvNotFound.visibility = View.VISIBLE
-                    swRefreshWords.isRefreshing = false
+                    tv_info_middle_text.setText(R.string.error_occurred)
+                    tv_info_middle_text.visibility = View.VISIBLE
+                    sw_refresh_word_list.isRefreshing = false
                 }
             }
         })
     }
 
     private fun initListeners() {
-        swRefreshWords.setOnRefreshListener {
+        sw_refresh_word_list.setOnRefreshListener {
             if (currentQuery.isNullOrBlank()) {
-                swRefreshWords.isRefreshing = false
+                sw_refresh_word_list.isRefreshing = false
             } else {
                 search(currentQuery!!)
             }
         }
+    }
+
+    private fun openDetailFragment(word: Word){
+        findNavController().navigate(WordSearchFragmentDirections.fromWordListToWordDetail(word))
     }
 
     private fun search(query: String) {
@@ -83,8 +92,8 @@ class WordListFragment : Fragment(R.layout.fragment_word_list), SearchView.OnQue
 
     private fun retrieveList(users: List<Word>) {
         wordAdapter.apply {
-            swRefreshWords.isRefreshing = false
-            wordAdapter.submitList(users)
+            sw_refresh_word_list.isRefreshing = false
+            wordAdapter.updateData(users)
         }
     }
 

@@ -3,11 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/list_fragment">
+    app:startDestination="@id/WordListFragment">
 
     <fragment
-        android:id="@+id/list_fragment"
-        android:name="com.popkovanton.dictionary.ui.fragment.WordListFragment"
-        tools:layout="@layout/fragment_word_list"/>
+        android:id="@+id/WordListFragment"
+        android:name="com.popkovanton.dictionary.ui.fragment.WordSearchFragment"
+        tools:layout="@layout/fragment_word_list">
+        <action
+            android:id="@+id/fromWordListToWordDetail"
+            app:destination="@id/WordDetailsFragment"
+            app:popUpTo="@id/WordListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/WordDetailsFragment"
+        android:name="com.popkovanton.dictionary.ui.fragment.WordDetailsFragment"
+        tools:layout="@layout/fragment_word_details">
+        <argument
+            android:name="word"
+            app:argType="com.popkovanton.dictionary.data.model.Word" />
+    </fragment>
 
 </navigation>

@@ -1,6 +1,6 @@
 # Dictionary (SkyEng test)
 ## Пример
-[<img src="media/infinite_pager_demo.gif" width="300" />]()
+[<img src="media/dictionary_sample.gif" width="300" />]()
 ## Установка
 - Кнопка clone -> копировать путь
 - Android Studio -> File -> New -> Project From Version Control (Windows)

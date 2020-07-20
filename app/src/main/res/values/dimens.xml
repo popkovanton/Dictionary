@@ -2,4 +2,15 @@
 <resources>
     <!--size elements-->
     <dimen name="space_maximum_72">72dp</dimen>
+
+    <!-- typical spacing between two views -->
+    <dimen name="spacing_normal_16">16dp</dimen>
+    <dimen name="spacing_small_8">8dp</dimen>
+    <dimen name="spacing_tiny_4">4dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font_large_20">20sp</dimen>
+    <dimen name="font_large_18">18sp</dimen>
+    <dimen name="font_normal_16">16sp</dimen>
+    <dimen name="font_small_12">12sp</dimen>
 </resources>

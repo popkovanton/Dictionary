@@ -27,120 +27,73 @@
 
         <View
             android:id="@+id/main_info_background"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/space_maximum_72"
-            android:background="@android:color/holo_blue_light"
+            style="@style/WordDetail.InfoBack"
+            android:layout_width="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_header_background" />
 
         <TextView
             android:id="@+id/tv_word_name"
+            style="@style/WordDetail.TextView.Title.Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:textColor="@android:color/black"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_word_translation"
             app:layout_constraintStart_toStartOf="@+id/main_info_background"
             app:layout_constraintTop_toBottomOf="@+id/iv_header_background"
-            tools:text="Word"
-            android:layout_marginLeft="16dp" />
+            tools:text="Word" />
 
         <TextView
             android:id="@+id/tv_word_translation"
+            style="@style/WordDetail.TextView.Description.Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:textColor="@android:color/black"
-            android:fontFamily="sans-serif-light"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/main_info_background"
             app:layout_constraintStart_toStartOf="@+id/main_info_background"
             app:layout_constraintTop_toBottomOf="@+id/tv_word_name"
-            tools:text="Translation"
-            android:layout_marginLeft="16dp" />
+            tools:text="Translation" />
 
         <TextView
             android:id="@+id/tv_transcription_title"
+            style="@style/WordDetail.TextView.Title.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Transcription"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:layout_marginTop="@dimen/spacing_normal_16"
+            android:text="@string/tv_transcription_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_info_background" />
 
         <TextView
             android:id="@+id/tv_transcription"
-            android:layout_width="wrap_content"
+            style="@style/WordDetail.TextView.Description.Secondary"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="sans-serif-light"
+            android:layout_marginTop="@dimen/spacing_tiny_4"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_transcription_title"
             tools:text="Lorem ipsum dolor sit amet" />
 
-        <View
-            android:id="@+id/divider_1"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_transcription"
-            app:layout_constraintTop_toBottomOf="@+id/tv_transcription" />
-
         <TextView
             android:id="@+id/tv_definition_title"
+            style="@style/WordDetail.TextView.Title.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Definition"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:layout_marginTop="@dimen/spacing_normal_16"
+            android:text="@string/tv_definition_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_transcription" />
 
         <TextView
             android:id="@+id/tv_definition"
+            style="@style/WordDetail.TextView.Description.Secondary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="sans-serif-light"
-            android:maxLines="3"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:layout_marginTop="@dimen/spacing_tiny_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_definition_title"
             tools:text="Lorem ipsum dolor sit amet" />
-
-        <View
-            android:id="@+id/divider_2"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="@+id/tv_definition"
-            app:layout_constraintStart_toStartOf="@+id/tv_definition"
-            app:layout_constraintTop_toBottomOf="@+id/tv_definition" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
